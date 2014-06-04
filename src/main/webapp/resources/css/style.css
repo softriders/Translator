@@ -1,0 +1,53 @@
+body{
+    font-family:sans-serif;
+}
+
+#header,#footer{
+    width: 800px;
+}
+
+input{
+    background: #CADEF3;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+#header{
+    border-bottom: solid ;
+    padding: 20px;
+}
+
+#header_left{
+    float: left;
+}
+
+#content{
+    left: 440px;
+    position: relative;
+}
+
+#b{
+    alignment-adjust: text-after-edge;
+}
+
+#translate{
+    background: yellow;
+    position: relative;
+    left:170px;
+}
+
+textarea{
+    background:rgb(209, 235, 241);
+    border-color: rgb(20, 19, 19);
+    width: 435px;
+    height: 100px;
+    border: solid 1px;
+}
+
+label{
+    padding: 10px;
+}
+#reset,#copy{
+    position: relative;
+    left: 385px;
+}

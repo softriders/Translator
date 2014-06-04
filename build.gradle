@@ -1,0 +1,56 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'war'
+
+//version = '1.0'
+
+project.ext {
+	//productName = 'rest'
+	deployDir  = System.getenv()['DEPLOY_DIR']
+	projectName = 'translator'/* default war plugin make it as root folder name"*/
+}
+
+repositories {
+		mavenCentral()
+}
+        
+dependencies {
+	compile		'org.slf4j:slf4j-api:' + slfjVersion,
+				'org.slf4j:slf4j-log4j12:' + slfjVersion,
+				'log4j:log4j:' + logjVersion,
+			//	'org.xerial:sqlite-jdbc:' + sqliteVersion,	
+				'org.springframework:spring-core:' + springVersion, 
+				'org.springframework:spring-web:' + springVersion,
+				'org.springframework:spring-webmvc:'  + springVersion,
+				'org.springframework:spring-context:'  + springVersion,
+				'org.codehaus.jackson:jackson-mapper-asl:' + jacksonVersion,
+				'taglibs:standard:' + tagLib
+			//	'jstl:jstl:1.1.2'
+			//	'javax.transaction:jta:1.1'
+			
+	
+
+testCompile		'junit:junit:4.11',
+				'org.testng:testng:6.8.7'
+}
+
+task deploy << {/* << ignore the function in normal build*/
+	//println deployDir
+	println "Cleaning tomcat webapps directory"
+	ant.delete () { 
+		fileset(dir: file("${deployDir}"), includes: projectName + '*')  //deleting war
+	}
+	ant.delete(dir: "${deployDir}/" + projectName) //deleting folder 
+	println "Deploying web service"
+	copy{
+		from 'build/libs'
+		into "${deployDir}"
+		include '*.war'
+	}	
+}
+
+
+task wrapper(type: Wrapper) {
+   gradleVersion = '1.11'
+}
