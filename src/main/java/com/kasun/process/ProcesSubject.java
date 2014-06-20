@@ -20,7 +20,7 @@ public class ProcesSubject {
 
         int i = 0;
        
-        while (i < words.length && !(ProcessLogic.isABeVerb(words[i])) && !(ProcessLogic.isAHvHs(words[i])) && !(ProcessLogic.isNormalVerb(words[i])) && !(ProcessLogic.isDoDoes(words[i])) ) {
+        while (i < words.length && !(ProcessLogic.isABeVerb(words[i])) && !(ProcessLogic.isAHvHs(words[i])) && !(ProcessLogic.isNormalVerb(words[i])) && !(ProcessLogic.isDoDoes(words[i])) && !(ProcessLogic.isWill(words[i]))) {
             subAsArrayList.add(words[i]);
             log.info("Sub "+words[i]);
             log.info("ProcessLogic.isDoDoes(words[i]) "+ProcessLogic.isDoDoes(words[i]));
@@ -30,31 +30,26 @@ public class ProcesSubject {
     }
 
     public String getSubjectMean(String sentence) {
-    	if(sentence != null && !sentence.isEmpty() && !sentence.trim().isEmpty()){
-    		sentence=sentence.trim();
-    		ArrayList<String> subAsArrayList = new ArrayList<String>();
-            subAsArrayList = subAsArrayList(sentence);
-            String[] arr = new String[subAsArrayList.size()];
-            subAsArrayList.toArray(arr);
 
-            String mean = "";
+        ArrayList<String> subAsArrayList = new ArrayList<String>();
+        subAsArrayList = subAsArrayList(sentence);
+        String[] arr = new String[subAsArrayList.size()];
+        subAsArrayList.toArray(arr);
 
-            int i = 0;
+        String mean = "";
 
-            while (i < arr.length) {
-                if (ProcessLogic.isOwnerShip(arr[i])) {
-                    mean = mean + " " + ProcessLogic.ownerShipMean(arr[i]) + " ";
-                    //commented by shashi
-                    // + ProcessLogic.getAnyWordMeaning(arr[i + 1]) + " ";
-                    //i++;
-                } else {
-                    mean = mean + " " + ProcessLogic.getAnyWordMeaning(arr[i]) + " ";
-                }
+        int i = 0;
+
+        while (i < arr.length) {
+            if (ProcessLogic.isOwnerShip(arr[i])) {
+                mean = mean + " " + ProcessLogic.ownerShipMean(arr[i]) + " " + ProcessLogic.getAnyWordMeaning(arr[i + 1]) + " ";
                 i++;
+            } else {
+                mean = mean + " " + ProcessLogic.getAnyWordMeaning(arr[i]) + " ";
             }
-            log.info("Subject Meaning : " + mean);
-            return mean;
-    	}
-		return "sentence is empty";
+            i++;
+        }
+        log.info("Subject Meaning : " + mean);
+        return mean;
     }
 }

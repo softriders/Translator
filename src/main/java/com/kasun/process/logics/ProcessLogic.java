@@ -9,11 +9,11 @@ public class ProcessLogic {
 
     private static final Logger log = LoggerFactory.getLogger(ProcessLogic.class);
 
-    private static String[] beWorbs = { "is", "am", "are", "was", "were", "be", "will", "shall","isn't","aren't","ain't","wasn't","weren't","won't","shan't" };
+    private static String[] beWorbs = { "is", "am", "are", "was", "were", "be"};
 
-    private static String[] hasHv = { "has", "have", "had","hasn't","haven't","hadn't" };
+    private static String[] hasHv = { "has", "have", "had" };
 
-    private static String[] pastPari = { "gone", "come", "eaten", "drunk", "read" };
+    private static String[] pastPari = { "gone", "come", "eatten", "drunk", "read" };
 
     private static String[] preposisions = { "to", "for", "from", "on", "in", "with", "about", "" };
     private static String[] proposisionsMeaning = { "ට", " වෙනුවෙන්", " සිට", " මත", " තුල", " සමග", " පිලිබදව", "" };
@@ -30,28 +30,29 @@ public class ProcessLogic {
     public static String[] englishVerbWithIng = { "coming", "eating", "drinking", "riding", "runing", "kissing", "reading",
             "going", "talking", "writing" };
 
-    private static String[] sm = { "his", "her", "their", "my","our" };
-    private static String[] smMean = { "ඔහුගේ", "ඇයගේ", "ඔව්න්ගේ", "මගේ","අපේ" };
+    private static String[] sm = { "his", "her", "their", "my" };
+    private static String[] smMean = { "ඔහුගේ", "ඇයගේ", "ඔව්න්ගේ", "මගේ" };
 
-    private static String[] englishTime = { "tomorrow","today","yesterday" };
-    private String[] sinhalaTime = { "හෙට","අද","ඊයේ" };
+    private static String[] englishTime = { "tomorow" };
+    private String[] sinhalaTime = { "හෙට" };
 
-    private String[] objectValues = { "a", "an", "many", "more", "the","little" };
-    private String[] objectValuesMeaning = { "ක්", "ක්", "ගොඩාක්", "ගොඩාක්","", "ටිකක්" };
+    private String[] objectValues = { "a", "an", "many", "more", "the" };
+    private String[] objectValuesMeaning = { "ක්", "ක්", "ගොඩාක්", "ගොඩාක්", "" };
 
     private String[] adjectives = { "small", "big", "litle", "huge" };
     private String[] adjectivesMeaning = { "කුඩා", "ලොකු", "පොඩ්ඩක්", "විශාල" };
 
-    private static String[] doDes = { "do", "does", "don't", "doesn't","did","didn't" };
+    private static String[] doDes = { "do", "does", "don't", "doesn't" };
 
     private static String[] verbsPrasentSingl = { "goes", "comes", "eats", "runs", "reads", "has" };
-    private static String[] verbsPrasent = { "go", "come", "eat", "run", "read", "had","cry"};
+    public static String[] verbsPrasent = { "go", "come", "eat", "run", "read", "had" };
     private static String[] verbsPast = { "went", "came", "ate", "ran", "red", "had" };
 
     private static String[] verbsPrasentSingulerMeaning = { "යයි", "එයි", "කයි", "දුවයි", "කියවයි", "තියෙනවා" };
     private static String[] verbsPrasentPlurelMeaning = { "යති", "එති", "කති", "දුවති", "කියවති", "තියෙනවා" };
     private static String[] verbsPastSingulerMeaning = { "ගියේය", "අවේය", "කෑවේය", "දිව්වේය", "කියෙව්වේය", "තිබුනේය" };
-    private static String[] verbsPastPlurelMeaning = { "ගියෝය", "ආවෝය", "කෑවෝය", "දිව්වෝය", "කියෙව්වෝය", "තිබුනෝය" };
+    public static String[] verbsPastPlurelMeaning = { "ගියෝය", "ආවෝය", "කෑවෝය", "දිව්වෝය", "කියෙව්වෝය", "තිබුනෝය" };
+    public static String[] verbWithWill = {"යාවි","ඒවි","කාවි","දුවාවි","කියවාවි","තිබේවි"};;
 
     public static boolean isDoDoes(String verb) {
         int i = 0;
@@ -63,35 +64,30 @@ public class ProcessLogic {
         }
         return false;
     }
+    
+    public static boolean isWill(String verb){
+        if (verb.equals("will")){
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean isBeen(String verb){
+        if(verb.equals("been")){
+            return false;
+        }
+        return false;
+    }
 
     public static boolean isNormalVerb(String verb) {
-    	String verbEnd="",verbEndPlurel ="" ,verbEndPlurel3="";
-    	if(verb.length()!=0){
-    		verbEnd = verb.substring(verb.length() - 1, verb.length());
-    		if(verb.length()>1){
-    			verbEndPlurel = verb.substring(verb.length() -2, verb.length());
-        	}
-    		if(verb.length()>2){
-    	        verbEndPlurel3=verb.substring(verb.length() - 3, verb.length());//
-    		}
-    	}
- 
-    	if (verbEndPlurel3.equals("ves") | verbEndPlurel3.equals("ies")){
-        	if(verbEndPlurel3.equals("ies")){
-        		verb = verb.substring(0, verb.length() - 3)+'y';
-        	}
-        	else{
-        		//code this
-        	}
-        	//
-        }else if (verbEndPlurel.equals("es")) {
+        String verbEnd = verb.substring(verb.length() - 1, verb.length());
+        String verbEndPlurel = verb.substring(verb.length() - 2, verb.length());
+        if (verbEndPlurel.equals("es")) {
             verb = verb.substring(0, verb.length() - 2);
-        } //added by shashi
-        else if (verbEnd.equals("s")) {
+        } else if (verbEnd.equals("s")) {
             verb = verb.substring(0, verb.length() - 1);
         }
         int i = 0;
-        //check present tense
         while (i < verbsPrasent.length) {
             if (verb.equals(verbsPrasent[i])) {
                 return true;
@@ -99,7 +95,6 @@ public class ProcessLogic {
             i++;
         }
         i = 0;
-        //check past tense
         while (i < verbsPast.length) {
             if (verb.equals(verbsPast[i])) {
                 return true;
@@ -148,14 +143,12 @@ public class ProcessLogic {
         String[] words = splitSentence(sentence);
         int i = 0;
         while (i < words.length) {
-            if (isAHvHs(words[i]) && (i+1)<words.length) {
-                if (!(isPastParticiple(words[i + 1]) || words[i + 1].equals("been") || (words[i + 1].equals("being")))) {
+            if (isAHvHs(words[i])) {
+                if (!isPastParticiple(words[i + 1])) {
                     log.info("isAHvHs " + isAHvHs(words[i]));
                     log.info("!isPastParticiple " + !isPastParticiple(words[i + 1]));
                     return true;
                 }
-            }else if(isAHvHs(words[i])){
-            	return true;
             }
             i++;
         }
@@ -165,16 +158,11 @@ public class ProcessLogic {
     public static boolean isOnlyBeVerb(String sentence) {
         String[] words = splitSentence(sentence);
         int i = 0;
-        while (i < words.length) {
+        while (i < words.length - 1) {
             if (isABeVerb(words[i])) {
-            	if((i+1)<words.length){
-            		if (isPastParticiple(words[i + 1]) || isIngVerb(words[i + 1])||words[i + 1].equals("being")) {
-                        return false;
-                    }
-            		else{
-            			return true;
-            		}
-            	}else {
+                if (isPastParticiple(words[i + 1]) || isIngVerb(words[i + 1])) {
+                    return false;
+                } else {
                     return true;
                 }
             }
@@ -197,7 +185,6 @@ public class ProcessLogic {
 
     public static String[] splitSentence(String sentence) {
         String words[];
-        sentence = sentence.replaceAll("\\s+", " ");
         words = sentence.split(" ");
         return words;
     }
@@ -213,7 +200,7 @@ public class ProcessLogic {
         return false;
     }
 
-    public static boolean isPerfectTense(String sentence) {
+    public static boolean isPasiveVoice(String sentence) {
 
         String[] words = splitSentence(sentence);
 
@@ -277,16 +264,26 @@ public class ProcessLogic {
         }
         return 0;
     }
+    
+    public static boolean isFutureTense(String sentence){
+        int i = 0;
+        String[] words = splitSentence(sentence);
+        while(i<words.length){
+            if(isWill(words[i])){
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+    }
 
     public static boolean isContinues(String sentence) {
         String[] words = splitSentence(sentence);
         int beWorb = beDitector(sentence);
         if (beWorb != -1) {
-            if ((beWorb+1)<words.length && isIngVerb(words[beWorb + 1])) {
+            if (isAVerbIng(words[beWorb + 1])) {
                 return true;
-            }
-            else if((beWorb+2)<words.length && words[beWorb + 1].equals("be") && isIngVerb(words[beWorb + 2])){
-            	return true;
             }
         }
         return false;
@@ -294,13 +291,6 @@ public class ProcessLogic {
 
     public static boolean isOwnerShip(String word) {
         int i = 0;
-        String verbEnd;
-        if(word.length()>1){
-	        verbEnd=word.substring(word.length() - 2, word.length());
-	        if(verbEnd.equals("'s") || verbEnd.equals("s'")){
-	        	return true;
-	        }
-		}
         while (i < sm.length) {
             if (word.equals(sm[i])) {
                 return true;
@@ -345,6 +335,17 @@ public class ProcessLogic {
         int i = 0;
         while (i < preposisions.length) {
             if (preposisions[i].equals(word)) {
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+
+    public static boolean isAVerbIng(String word) {
+        int i = 0;
+        while (i < englishVerbWithIng.length) {
+            if (word.equals(englishVerbWithIng[i])) {
                 return true;
             }
             i++;

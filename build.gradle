@@ -9,6 +9,7 @@ project.ext {
 	//productName = 'rest'
 	deployDir  = System.getenv()['DEPLOY_DIR']
 	projectName = 'translator'/* default war plugin make it as root folder name"*/
+    jsName = '/resources/js/test.js'
 }
 
 repositories {
@@ -50,7 +51,17 @@ task deploy << {/* << ignore the function in normal build*/
 	}	
 }
 
-
+task jscp << {   
+       println "Deleting js file"   
+       ant.delete(file: "${deployDir}/" + projectName+jsName) //deleting file    
+       println "Copping js file"   
+       copy{   
+           from 'src/main/webapp/resources/js'  
+           into "${deployDir}/"+projectName+'/resources/js'
+           include 'test.js'
+       }
+    }
+    
 task wrapper(type: Wrapper) {
    gradleVersion = '1.11'
 }

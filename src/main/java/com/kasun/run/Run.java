@@ -3,14 +3,13 @@ package com.kasun.run;
 import java.util.Scanner;
 
 import com.kasun.translate.Translate;
+
 public class Run {
+    
+    static Translate translate = new Translate();
 
     public static void main(String[] args) {
-
-        Translate translate = new Translate();
-
         String sentence = "hi";
-
         while (!(sentence.equals(" "))) {
 
             System.out.print("Enter English sentence here : ");
@@ -22,6 +21,16 @@ public class Run {
             meaning = translate.getMeaning(sentence);
             System.out.print("Meaning is : ");
             System.out.println(meaning);
+        }
+    }
+
+    public static String getTranslation(String sentence) {
+        String meaning = "";
+        try {
+            meaning = translate.getMeaning(sentence);
+            return meaning;
+        } catch (Exception e) {
+            return "පරිවර්තනය කල නොහැක";
         }
     }
 }

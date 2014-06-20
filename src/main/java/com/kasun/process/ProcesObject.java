@@ -31,7 +31,7 @@ public class ProcesObject {
     private String[] sm = { "his", "her", "their", "my" };
     private String[] smMean = { "ඔහුගේ", "ඇයගේ", "ඔව්න්ගේ", "මගේ" };
 
-    private String[] englishTime = { "tomorrow" };
+    private String[] englishTime = { "tomorow" };
     private String[] sinhalaTime = { "හෙට" };
 
     private static String[] objectValues = { "a", "an", "many", "more", "the" };
@@ -60,11 +60,11 @@ public class ProcesObject {
 
         int i = 0;
         log.info("isSimpleTense "+ProcessLogic.isSimpleTense(sentence));
-        if (ProcessLogic.isContinues(sentence) || ProcessLogic.isPerfectTense(sentence) || ProcessLogic.isSimpleTense(sentence))
+        if (ProcessLogic.isContinues(sentence) || ProcessLogic.isPasiveVoice(sentence) || ProcessLogic.isSimpleTense(sentence))
         {
             
             while (i < words.length) {
-                if ((ProcessLogic.isIngVerb(words[i]) || ProcessLogic.isPastParticiple(words[i]) || ProcessLogic
+                if ((ProcessLogic.isAVerbIng(words[i]) || ProcessLogic.isPastParticiple(words[i]) || ProcessLogic
                         .isNormalVerb(words[i])) && check) {
                     log.info("word.. "+words[i]);
                     log.info("isNormalVerb.. "+ProcessLogic.isNormalVerb(words[i]));
