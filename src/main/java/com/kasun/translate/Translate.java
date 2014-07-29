@@ -1,10 +1,11 @@
 package com.kasun.translate;
 
+import java.sql.SQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.kasun.parser.Parser;
-
 import com.kasun.process.ProcesObject;
 import com.kasun.process.ProcesSubject;
 import com.kasun.process.ProsesVerb;
@@ -19,7 +20,7 @@ public class Translate {
     private String[] englishTime = { "tomorow" };
 
 
-    public String getMeaning(String sentence) {
+    public String getMeaning(String sentence) throws SQLException {
     	
 
     	String [] pattern = Parser.getPattern(sentence);

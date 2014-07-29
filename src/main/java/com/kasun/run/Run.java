@@ -1,5 +1,6 @@
 package com.kasun.run;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.kasun.translate.Translate;
@@ -8,7 +9,7 @@ public class Run {
     
     static Translate translate = new Translate();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         String sentence = "hi";
         while (!(sentence.equals(" "))) {
 

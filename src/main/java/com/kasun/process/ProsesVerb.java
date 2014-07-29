@@ -1,10 +1,12 @@
 package com.kasun.process;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.kasun.db.DBConnection;
 import com.kasun.process.logics.ProcessLogic;
 
 public class ProsesVerb {
@@ -83,7 +85,7 @@ public class ProsesVerb {
         return verbsAsArrayList;
     }
 
-    public String verbMeanOfSentence(String sentence, String[] pattern) {
+    public String verbMeanOfSentence(String sentence, String[] pattern) throws SQLException {
 
         ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
         String[] verb = new String[verbs.size()];
@@ -111,9 +113,11 @@ public class ProsesVerb {
 
                     if (!verb[1].equals("be")) {
                         mean = getMeaningWithWill(verb[1]);
-                    } else {
+                    } else if(verb[1].equals("be") && verb.length > 2) {
                         log.info("getMeaningOfAVerb(verb[2]): " + getMeaningOfAVerb(verb[2]));
                         mean = getMeaningOfAVerb(verb[2]) + " සිටීවි";
+                    } else {
+                        mean = "සිටීවි";
                     }
 
                     log.info("Mean Verb " + mean);
@@ -161,16 +165,17 @@ public class ProsesVerb {
         return "Not in Database ";
     }
 
-    public String getMeaningOfAVerb(String Verb) {
+    public String getMeaningOfAVerb(String Verb) throws SQLException {
         int i = 0;
         if (ProcessLogic.isIngVerb(Verb)) {
-            while (i < englishVerb.length) {
-                if (Verb.equals(englishVerb[i])) {
-                    return sinhalaVerb[i];
-                }
-                i++;
-            }
-            i = 0;
+           return DBConnection.getVerbIngMean(Verb);
+//            while (i < englishVerb.length) {
+//                if (Verb.equals(englishVerb[i])) {
+//                    return sinhalaVerb[i];
+//                }
+//                i++;
+//            }
+//            i = 0;
         } else if (ProcessLogic.isABeVerb(Verb)) {
             while (i < beVerbs.length) {
                 if (Verb.equals(beVerbs[i])) {
