@@ -150,8 +150,8 @@ public class ProcesObject {
         return mean;
     }
 
-    public static boolean isAndInObjects(String sentence) {
-        ArrayList<String> obj = makeObjectsAsList(sentence);
+    public static boolean isAndInObjects(String sentence,String [] pattern) {
+        ArrayList<String> obj = Process.objectToList(sentence,pattern);
         String[] objects = new String[obj.size()];
         obj.toArray(objects);
         int i = 0;
@@ -177,11 +177,11 @@ public class ProcesObject {
         return -1;
     }
 
-    public static ArrayList<String> veryfyAnd(String sentence) {
-        ArrayList<String> obj = makeObjectsAsList(sentence);
+    public static ArrayList<String> veryfyAnd(String sentence,String [] pattern) {
+        ArrayList<String> obj = Process.objectToList(sentence,pattern);
         int remAndPosistion = andPosision(obj);
         ArrayList<String> modifiedObj = new ArrayList<String>();
-        if (isAndInObjects(sentence) && !ProcessLogic.isIngVerb(obj.get(remAndPosistion + 1))) {
+        if (isAndInObjects(sentence,pattern) && !ProcessLogic.isIngVerb(obj.get(remAndPosistion + 1))) {
             String[] objects = new String[obj.size()];
             obj.toArray(objects);
 
@@ -274,9 +274,9 @@ public class ProcesObject {
         return modifiedObj;
     }
 
-    public String objMean(String sentence) {
+    public String objMean(String sentence, String [] pattern) {
 
-        ArrayList<String> obj = veryfyAnd(sentence);
+        ArrayList<String> obj = veryfyAnd(sentence,pattern);
         String[] objects = new String[obj.size()];
 
         obj.toArray(objects);

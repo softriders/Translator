@@ -25,12 +25,12 @@ public class ProsesVerb {
     private String[] hasHv = { "has", "have", "had" };
     private String[] hasHvMean = { "තියෙනවා", "තියෙනවා", " තිබුනා" };
 
-    private String[] beVerbs = { "is", "are", "was", "were", "am", "will", "be" };
-    private String[] beVerbsMean = { "සිටියි", "සිටිති", "සිටියේය", "සිටියෝය", "සිටිමි" };
+    private String[] beVerbs = { "is", "are", "was", "were", "am", "be" };
+    private String[] beVerbsMean = { "සිටියි", "සිටිති", "සිටියේය", "සිටියෝය", "සිටිමි", "සිටීවි" };
 
     private static String[] verbWithWillMean = { "යාවි", "ඒවි", "කාවි", "දුවාවි", "කියවාවි", "තිබේවි" };
 
-    public ArrayList<String> verbsInToArrayList(String sentence) {
+    public ArrayList<String> verbsInToArrayList(String sentence, String[] pattern) {
         String[] words = ProcessLogic.splitSentence(sentence);
 
         ArrayList<String> verbsAsArrayList = new ArrayList<String>();
@@ -65,13 +65,13 @@ public class ProsesVerb {
             if (ProcessLogic.isNormalVerb(words[i])) {
                 verbsAsArrayList.add(words[i]);
                 log.info(" verb 1 " + words[i]);
-                System.out.println("Normal Verb " + words[i]);
+                log.info("Normal Verb " + words[i]);
                 break;
             }
             if (ProcessLogic.isWill(words[i])) {
                 // System.out.println("will");
                 // this.willForm = true;
-                System.out.println("willForm " + words[i]);
+                log.info("willForm " + words[i]);
                 verbsAsArrayList.add(words[i]);
 
                 if (!(ProcessLogic.isBeen(words[i + 1]))) {
@@ -83,15 +83,15 @@ public class ProsesVerb {
         return verbsAsArrayList;
     }
 
-    public String verbMeanOfSentence(String sentence) {
+    public String verbMeanOfSentence(String sentence, String[] pattern) {
 
-        ArrayList<String> verbs = verbsInToArrayList(sentence);
+        ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
         String[] verb = new String[verbs.size()];
         verbs.toArray(verb);
 
         int k = 0;
         while (k < verb.length) {
-            System.out.println("Verbs... " + verb[k]);
+            log.info("Verbs... " + verb[k]);
             k++;
         }
 
@@ -100,20 +100,24 @@ public class ProsesVerb {
             int j = verb.length - 1;
             int i = 0;
             if (!ProcessLogic.isDoDoes(verb[0])) {
-                System.out.println("ProcessLogic.isFutureTense(sentence) "+ProcessLogic.isFutureTense(sentence));
+                log.info("ProcessLogic.isFutureTense(sentence) " + ProcessLogic.isFutureTense(sentence));
                 if (ProcessLogic.isContinues(sentence)) {
                     while (i < verb.length) {
                         mean = mean + " " + getMeaningOfAVerb(verb[j]);
                         j--;
                         i++;
                     }
-                } 
-             else if (ProcessLogic.isFutureTense(sentence)) {
+                } else if (ProcessLogic.isFutureTense(sentence)) {
 
-                mean = getMeaningWithWill(verb[1]);
+                    if (!verb[1].equals("be")) {
+                        mean = getMeaningWithWill(verb[1]);
+                    } else {
+                        log.info("getMeaningOfAVerb(verb[2]): " + getMeaningOfAVerb(verb[2]));
+                        mean = getMeaningOfAVerb(verb[2]) + " සිටීවි";
+                    }
 
-                System.out.println("Mean Verb " + mean);
-             } else {
+                    log.info("Mean Verb " + mean);
+                } else {
                     while (i < verb.length) {
                         mean = mean + " " + getMeaningOfPasveAVerb(verb[j]);
                         j--;
@@ -125,7 +129,7 @@ public class ProsesVerb {
 
                 mean = getMeaningWithWill(verb[1]);
 
-                System.out.println("Mean Verb " + mean);
+                log.info("Mean Verb " + mean);
             } else {
                 mean = getMeaningOfAVerb(verb[i]) + ProcessLogic.normalVerbMean(verb[i + 1]);
                 log.info("verb " + verb[i]);
@@ -139,7 +143,7 @@ public class ProsesVerb {
     }
 
     public String getMeaningWithWill(String verb) {
-        System.out.println("Search for "+verb);
+        log.info("Search for " + verb);
         int i = 0;
         while (i < englishVerb.length) {
             if (verb.equals(ProcessLogic.verbsPrasent[i])) {
@@ -150,6 +154,11 @@ public class ProsesVerb {
         }
 
         return "Not in Database...";
+    }
+
+    public String getMeaningWithWillBe(String verb) {
+
+        return "Not in Database ";
     }
 
     public String getMeaningOfAVerb(String Verb) {

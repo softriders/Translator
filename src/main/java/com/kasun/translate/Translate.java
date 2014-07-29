@@ -3,6 +3,8 @@ package com.kasun.translate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.kasun.parser.Parser;
+
 import com.kasun.process.ProcesObject;
 import com.kasun.process.ProcesSubject;
 import com.kasun.process.ProsesVerb;
@@ -18,6 +20,9 @@ public class Translate {
 
 
     public String getMeaning(String sentence) {
+    	
+
+    	String [] pattern = Parser.getPattern(sentence);
         
         ProcesObject procesObject = new ProcesObject();
         ProsesVerb prosesVerb = new ProsesVerb();
@@ -25,8 +30,8 @@ public class Translate {
         
         String sinhalaMeaning;
 
-        sinhalaMeaning = procesSubject.getSubjectMean(sentence) + procesObject.objMean(sentence)
-                + prosesVerb.verbMeanOfSentence(sentence);
+        sinhalaMeaning = procesSubject.getSubjectMean(sentence,pattern) + procesObject.objMean(sentence,pattern)
+                + prosesVerb.verbMeanOfSentence(sentence,pattern);
 
         return sinhalaMeaning;
     }

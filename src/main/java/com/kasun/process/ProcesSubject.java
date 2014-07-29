@@ -13,7 +13,7 @@ public class ProcesSubject {
 
     private static final Logger log = LoggerFactory.getLogger(ProcesSubject.class);
 
-    public ArrayList<String> subAsArrayList(String sentence) {
+    public ArrayList<String> subAsArrayList(String sentence, String [] pattern) {
         String[] words = ProcessLogic.splitSentence(sentence);
 
         ArrayList<String> subAsArrayList = new ArrayList<String>();
@@ -28,11 +28,12 @@ public class ProcesSubject {
         }
         return subAsArrayList;
     }
-
-    public String getSubjectMean(String sentence) {
+    
+      
+    public String getSubjectMean(String sentence, String [] pattern) {
 
         ArrayList<String> subAsArrayList = new ArrayList<String>();
-        subAsArrayList = subAsArrayList(sentence);
+        subAsArrayList = Process.subToArrayList(sentence,pattern);
         String[] arr = new String[subAsArrayList.size()];
         subAsArrayList.toArray(arr);
 
