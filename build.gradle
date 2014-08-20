@@ -20,6 +20,7 @@ dependencies {
 	compile		'org.slf4j:slf4j-api:' + slfjVersion,
 				'org.slf4j:slf4j-log4j12:' + slfjVersion,
 				'log4j:log4j:' + logjVersion,
+				'mysql:mysql-connector-java:5.1.28',				
 			//	'org.xerial:sqlite-jdbc:' + sqliteVersion,	
 				'org.springframework:spring-core:' + springVersion, 
 				'org.springframework:spring-web:' + springVersion,
