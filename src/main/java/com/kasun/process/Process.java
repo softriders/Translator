@@ -9,79 +9,89 @@ import com.kasun.process.logics.ProcessLogic;
 
 public class Process {
 
-    private static final Logger log = LoggerFactory.getLogger(Process.class);
+	private static final Logger log = LoggerFactory.getLogger(Process.class);
 
-    public static ArrayList<String> subToArrayList(String sentence, String[] pattern) {
+	public static ArrayList<String> subToArrayList(String sentence,
+			String[] pattern) {
 
-        String[] words = ProcessLogic.splitSentence(sentence);
+		String[] words = ProcessLogic.splitSentence(sentence);
 
-        ArrayList<String> subAsArrayList = new ArrayList<String>();
+		ArrayList<String> subAsArrayList = new ArrayList<String>();
 
-        int i = 0;
+		int i = 0;
 
-        while (i < words.length && !(ProcessLogic.isABeVerb(words[i])) && !pattern[i].equals("VBZ") && !pattern[i].equals("VBP")
-                && !pattern[i].equals("VBG") && !pattern[i].equals("VB") && !pattern[i].equals("MD") && !pattern[i].equals("VBN")) {
+		while (i < words.length && !(ProcessLogic.isABeVerb(words[i]))
+				&& !pattern[i].equals("VBZ") && !pattern[i].equals("VBP")
+				&& !pattern[i].equals("VBG") && !pattern[i].equals("VB")
+				&& !pattern[i].equals("MD") && !pattern[i].equals("VBN")
+				&& !pattern[i].equals("VBD")) {
 
-            subAsArrayList.add(words[i]);
-            log.info("Subject words " + i + " " + words[i]);
-            i++;
+			subAsArrayList.add(words[i]);
+			log.info("pattern: " + pattern[i]);
+			log.info("Subject words " + i + " " + words[i]);
+			i++;
 
-        }
+		}
 
-        return subAsArrayList;
-    }
+		return subAsArrayList;
+	}
 
-    public static ArrayList<String> verbsToArrayList(String sentence, String[] pattern) {
-        String[] words = ProcessLogic.splitSentence(sentence);
+	public static ArrayList<String> verbsToArrayList(String sentence,
+			String[] pattern) {
+		String[] words = ProcessLogic.splitSentence(sentence);
 
-        ArrayList<String> verbsAsArrayList = new ArrayList<String>();
-        int i = 0;
-        while (i < words.length && !(isVerb(pattern[i]))) {
-            i++;
-        }
+		ArrayList<String> verbsAsArrayList = new ArrayList<String>();
+		int i = 0;
+		while (i < words.length && !(isVerb(pattern[i]))) {
+			i++;
+		}
 
-        while (i < words.length && isVerb(pattern[i])) {
-            log.info("isVerb " + words[i] + " " + isVerb(pattern[i]) + " " + pattern[i]);
-            verbsAsArrayList.add(words[i]);
-            log.info("Verb : " + words[i]);
-            i++;
-        }
+		while (i < words.length && isVerb(pattern[i])) {
+			log.info("isVerb " + words[i] + " " + isVerb(pattern[i]) + " "
+					+ pattern[i]);
+			verbsAsArrayList.add(words[i]);
+			log.info("Verb : " + words[i]);
+			i++;
+		}
 
-        return verbsAsArrayList;
-    }
+		return verbsAsArrayList;
+	}
 
-    public static boolean isVerb(String patternWord) {
+	public static boolean isVerb(String patternWord) {
 
-        if (patternWord.equals("VBZ") || patternWord.equals("VBP") || patternWord.equals("VBG") || patternWord.equals("VB")
-                || patternWord.equals("MD") || patternWord.equals("VBN") || patternWord.equals("VBD")) {
+		if (patternWord.equals("VBZ") || patternWord.equals("VBP")
+				|| patternWord.equals("VBG") || patternWord.equals("VB")
+				|| patternWord.equals("MD") || patternWord.equals("VBN")
+				|| patternWord.equals("VBD")) {
 
-            return true;
+			return true;
 
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
-    public static ArrayList<String> objectToList(String sentence, String[] pattern) {
-        ArrayList<String> obj = new ArrayList<String>();
-        String[] words = ProcessLogic.splitSentence(sentence);
+	public static ArrayList<String> objectToList(String sentence,
+			String[] pattern) {
+		ArrayList<String> obj = new ArrayList<String>();
+		String[] words = ProcessLogic.splitSentence(sentence);
 
-        int i = 0;
-        log.info("isSimpleTense " + ProcessLogic.isSimpleTense(sentence));
+		int i = 0;
+		log.info("isSimpleTense " + ProcessLogic.isSimpleTense(sentence));
 
-        while (i < words.length && !(isVerb(pattern[i]))) {
-            i++;
-        }
+		while (i < words.length && !(isVerb(pattern[i]))) {
+			i++;
+		}
 
-        while (i < words.length && isVerb(pattern[i])) {
-            i++;
-        }
+		while (i < words.length && isVerb(pattern[i])) {
+			i++;
+		}
 
-        while (i < words.length) {
-            obj.add(words[i]);
-            i++;
-        }
+		while (i < words.length) {
+			obj.add(words[i]);
+			i++;
+		}
 
-        return obj;
-    }
+		return obj;
+	}
 
 }
