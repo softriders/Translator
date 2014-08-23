@@ -1,6 +1,7 @@
 package com.kasun.parser;
 
 import java.io.BufferedWriter;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +67,7 @@ public class Parser {
 				Tree parent = leaf.parent(tree);
 				log.info(leaf.label().value() + "-"
 						+ parent.label().value() + " ");
-				pattern.add(parent.label().value());
+				pattern.add(modifyParserOutput(parent.label().value(),leaf.label().value()));
 			}
 			pattn = (String[]) pattern.toArray(new String[pattern.size()]);
 			System.out.println();
@@ -74,36 +75,50 @@ public class Parser {
 
 		return pattn;
 	}
-	public static void main(String[] args){
-		String sentence="I just ate rice";
+/*	public static void main(String[] args){
+		String sentence="I was eating rice";
 		String[] sentenceAsArray=ProcessLogic.splitSentence(sentence);
 		String[] pattern=getPattern(sentence);
 		for(int i=0;i<pattern.length;i++){
-			System.out.print(sentenceAsArray[i]+"-"+pattern[i]+" ");
+			System.out.println(i+" "+sentenceAsArray[i]+"-"+pattern[i]+" ");
 		}
-		System.out.println(predictTense(pattern));
-	}
-	public static String predictTense(String[] pattern){
+		for(int i=0;i<4;i++){
+			System.out.print(predictTense(pattern)[i]+" ");
+		}
+		
+	}	*/
+	public static String[] predictTense(String[] pattern){
+		String[] prediction=new String[4];
+		//0-tense,1-index of RB in verb,2-vrb starting index,3-obj starting index
 		for(int i=0;i<pattern.length;i++){
+			
 			//simple present tense-ASMPRT
 			if(pattern[i].equals("VBP") || pattern[i].equals("VBP")) {
-				return "ASMPRT" ;
+				return  setPrediction("ASMPRT",0,i,i+1);
 			}
 			//simple past tense-ASMPST
 			else if(pattern[i].equals("VBD")){
-				return "ASMPST";
+				return  setPrediction("ASMPST",0,i,i+1);
 			}
 			//simple future tense-ASMFT
 			else if(pattern[i].equals("MDbe") && 
 					(pattern[i+1].equals("VB") || (pattern[i+1].equals("RB") && pattern[i+2].equals("VB")))){
-				return "ASMFT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("ASMFT",i+1,i,i+3);
+				}
+				return  setPrediction("ASMFT",0,i,i+2);
 			}
 			//Present Perfect tense-APRPFT
 			else if((pattern[i].equals("VBPpos") || pattern[i].equals("VBZpos")) 
 					&& (pattern[i+1].equals("VBN") || 
 							(pattern[i+1].equals("RB") && pattern[i+2].equals("VBN"))
 							)){
-				return "APRPFT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("APRPFT",i+1,i,i+3);
+				}
+				return  setPrediction("APRPFT",0,i,i+2);
 			}
 			//past Perfect tense-APSPFT
 			else if(pattern[i].equals("VBDpos") && 
@@ -116,7 +131,11 @@ public class Parser {
 							)
 					)
 					){
-				return "APSPFT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("APSPFT",i+1,i,i+3);
+				}
+				return  setPrediction("APSPFT",0,i,i+2);
 			}
 			//future Perfect tense- AFPFT
 			else if(pattern[i].equals("MDbe") && 
@@ -127,41 +146,65 @@ public class Parser {
 							)
 					)
 					){
-				return "AFPFT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("AFPFT",i+1,i,i+4);
+				}
+				return  setPrediction("AFPFT",0,i,i+3);
 			}
 
 			//Present continuous tense-APRCT
 			else if((pattern[i].equals("MDbe") || pattern[i].equals("VBZbe")) &&
 					(pattern[i+1].equals("VBG") || (pattern[i+1].equals("RB") && pattern[i+2].equals("VBG")))
 					){
-				return "APRCT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("APRCT",i+1,i,i+3);
+				}
+				return  setPrediction("APRCT",0,i,i+2);
 			}
 			//past continuous tense-APSCT
-			else if(pattern[i].equals("VBD") &&
+			else if(pattern[i].equals("VBDbe") &&
 					(pattern[i+1].equals("VBG") || (pattern[i+1].equals("RB") && pattern[i+2].equals("VBG")))
 					){
-				return "APSCT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("APSCT",i+1,i,i+3);
+				}
+				return  setPrediction("APSCT",0,i,i+2);
 			}
 			//future continuous tense-AFCT
 			else if(pattern[i].equals("MDbe")  &&
 					(pattern[i+1].equals("VBbe") && (pattern[i+2].equals("VBG")) || 
 							(pattern[i+1].equals("RB") && pattern[i+2].equals("VBbe") && pattern[i+3].equals("VBG")))
 					){
-				return "AFCT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("AFCT",i+1,i,i+4);
+				}
+				return  setPrediction("AFCT",0,i,i+3);
 			}
 			//Present perfect continuous-APRPFCT
 			else if((pattern[i].equals("VBPpos") || pattern[i].equals("VBZpos")) && 
 					((pattern[i+1].equals("VBNbeen") && pattern[i+2].equals("VBG")) || 
 							(pattern[i+1].equals("RB") && pattern[i+2].equals("VBNbeen") && pattern[i+3].equals("VBG")))
 					){
-				return "APRPFCT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("APRPFCT",i+1,i,i+4);
+				}
+				return  setPrediction("APRPFCT",0,i,i+3);
 			}
 			//Past perfect continuous-APSPFCT
 			else if((pattern[i].equals("VBDpos") || pattern[i].equals("VBZpos")) && 
 					((pattern[i+1].equals("VBNbeen") && pattern[i+2].equals("VBG")) || 
 							(pattern[i+1].equals("RB") && pattern[i+2].equals("VBNbeen") && pattern[i+3].equals("VBG")))
 					){
-				return "APSPFCT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("APSPFCT",i+1,i,i+4);
+				}
+				return  setPrediction("APSPFCT",0,i,i+3);
 			}
 			//Future perfect continuous-AFPFCT
 			else if(pattern[i].equals("MDbe") && (
@@ -169,7 +212,11 @@ public class Parser {
 				(pattern[i+1].equals("RB") && pattern[i+2].equals("VBpos") && pattern[i+3].equals("VBNbeen") && pattern[i+4].equals("VBG"))
 				)
 				){
-				return "AFPFCT";
+				
+				if(pattern[i+1].equals("RB")){
+					return  setPrediction("AFPFCT",i+1,i,i+5);
+				}
+				return  setPrediction("AFPFCT",0,i,i+4);
 			}
 		}
 /*		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)))) {
@@ -178,7 +225,66 @@ public class Parser {
 		    //exception handling left as an exercise for the reader
 		}
 		*/
-		return "NOT FOUND";
+		return prediction;
 	}
+	
+	public static String[] setPrediction(String tense,int RBIndex,int vrbIndex,int objIndex){
+		//0-tense,1-index of RB in verb,2-vrb starting index,3-obj starting index
+		String[] prediction=new String[4];
+		prediction[0]=tense;
+		prediction[1]=""+RBIndex;
+		prediction[2]=""+vrbIndex;
+		prediction[3]=""+objIndex;
+		
+		return prediction;
+	}
+	public static String modifyParserOutput(String wordDecript,String word){
+                //in case of a be verb
+                if(wordDecript.equals("VBZ")) {
+                	if(ProcessParserOutput.isABeVerb(word)){
+                		wordDecript= "VBZbe";
+                	}
+                	else if(ProcessParserOutput.isAPossesiveVerb(word)){
+                		wordDecript= "VBZpos";
+                	}
+                }
+                else if( wordDecript.equals("VBP")) {
+                	if(ProcessParserOutput.isABeVerb(word)){
+                		wordDecript= "VBPbe";
+                	}
+                	else if(ProcessParserOutput.isAPossesiveVerb(word)){
+                		wordDecript= "VBPpos";
+                	}
+                }
+                else if(wordDecript.equals("VB")){
+                	//in case of verb 'be'
+                	if(word.equals("be")){
+                		wordDecript="VBbe";
+                	}
+                	//in case of has have
+                	else if(ProcessParserOutput.isAPossesiveVerb(word)){
+                		wordDecript="VBpos";
+                	}
+                	
+                }
+                else if(wordDecript.equals("VBN")){
+                	if(word.equals("been"))
+                		wordDecript="VBNbeen";
+                }
+                else if(wordDecript.equals("MD")){
+                	if(ProcessParserOutput.isABeVerb(word)) 
+                		wordDecript="MDbe";
+                }
+                else if (wordDecript.equals("VBD")){
+                	if(word.equals("had")){
+                		wordDecript="VBDpos";
+                	}
+                	else if(ProcessParserOutput.isABeVerb(word)){
+                		wordDecript="VBDbe";
+                	}
+                }
+                
+                return wordDecript;
+       }
 
 }
