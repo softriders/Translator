@@ -1,7 +1,6 @@
 package com.kasun.parser;
 
 import java.io.BufferedWriter;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -76,17 +75,25 @@ public class Parser {
 		return pattn;
 	}
 /*	public static void main(String[] args){
-		String sentence="I was eating rice";
+		String sentence="we all will have done it";
 		String[] sentenceAsArray=ProcessLogic.splitSentence(sentence);
 		String[] pattern=getPattern(sentence);
 		for(int i=0;i<pattern.length;i++){
 			System.out.println(i+" "+sentenceAsArray[i]+"-"+pattern[i]+" ");
 		}
 		for(int i=0;i<4;i++){
-			System.out.print(predictTense(pattern)[i]+" ");
+			//System.out.print(predictTense(pattern)[i]+" ");
 		}
-		
-	}	*/
+		String[][] finalOtpt= splitSentence(sentence,predictTense(pattern));
+		for(int i=0;i<finalOtpt.length;i++){
+			//System.out.println(finalOtpt[i].length);
+			for(int j=0;j<finalOtpt[i].length;j++){
+				System.out.print(finalOtpt[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	*/
 	public static String[] predictTense(String[] pattern){
 		String[] prediction=new String[4];
 		//0-tense,1-index of RB in verb,2-vrb starting index,3-obj starting index
@@ -227,7 +234,6 @@ public class Parser {
 		*/
 		return prediction;
 	}
-	
 	public static String[] setPrediction(String tense,int RBIndex,int vrbIndex,int objIndex){
 		//0-tense,1-index of RB in verb,2-vrb starting index,3-obj starting index
 		String[] prediction=new String[4];
@@ -286,5 +292,35 @@ public class Parser {
                 
                 return wordDecript;
        }
-
+	public static String[][] splitSentence(String sentence,String[] prediction){
+		String[] words = ProcessLogic.splitSentence(sentence);
+		String[][] sentenceDecrpt=new String[4][];
+		String[] tense=new String[1];
+		tense[0]=prediction[0];
+		sentenceDecrpt[0]=tense;
+		for(int i=0;i<words.length;i++){
+			int subIndex=Integer.parseInt(prediction[2]);
+			String[] sub=new String[subIndex];
+			//subject
+			for(;i<subIndex;i++){
+				sub[i]=words[i];
+			}
+			sentenceDecrpt[1]=sub;
+			int vrbIndex=Integer.parseInt(prediction[3]);
+			String[] vrb=new String[vrbIndex-subIndex];
+			//verb
+			for(;i<Integer.parseInt(prediction[3]);i++){
+				vrb[i-subIndex]=words[i];
+			}
+			sentenceDecrpt[2]=vrb;
+			int objIndex=words.length;
+			String[] obj=new String[objIndex-vrbIndex];
+			//object
+			obj[i-vrbIndex]=words[i];
+			if(i+1==words.length){
+				sentenceDecrpt[3]=obj;
+			}
+		}
+		return sentenceDecrpt;
+	}
 }
