@@ -74,26 +74,26 @@ public class Parser {
 
 		return pattn;
 	}
-/*	public static void main(String[] args){
-		String sentence="The man will still have been walking along the path";
-		String[] sentenceAsArray=ProcessLogic.splitSentence(sentence);
-		String[] pattern=getPattern(sentence);
-		for(int i=0;i<pattern.length;i++){
-			System.out.print(i+" "+sentenceAsArray[i]+"-"+pattern[i]+" ");
-		}
-		System.out.println();
-		for(int i=0;i<4;i++){
-			System.out.print(predictTense(pattern)[i]+" ");
-		}
-		System.out.println();
-		String[][] finalOtpt= splitSentence(sentence,predictTense(pattern));
-		for(int i=0;i<finalOtpt.length;i++){
-			for(int j=0;j<finalOtpt[i].length;j++){
-				System.out.print(finalOtpt[i][j]+" ");
-			}
-			System.out.println();
-		}
-	}*/
+//	public static void main(String[] args){
+//		String sentence="His father has gone home with my brother";
+//		String[] sentenceAsArray=ProcessLogic.splitSentence(sentence);
+//		String[] pattern=getPattern(sentence);
+//		for(int i=0;i<pattern.length;i++){
+//			System.out.print(i+" "+sentenceAsArray[i]+"-"+pattern[i]+" ");
+//		}
+//		System.out.println();
+//		for(int i=0;i<4;i++){
+//			System.out.print(predictTense(pattern)[i]+" ");
+//		}
+//		System.out.println();
+//		String[][] finalOtpt= splitSentence(sentence,predictTense(pattern));
+//		for(int i=0;i<finalOtpt.length;i++){
+//			for(int j=0;j<finalOtpt[i].length;j++){
+//				System.out.print(finalOtpt[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//	}
 	
 	public static String[] predictTense(String[] pattern){
 		String[] prediction=new String[4];

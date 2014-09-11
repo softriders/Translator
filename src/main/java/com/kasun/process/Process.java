@@ -24,7 +24,8 @@ public class Process {
 				&& !pattern[i].equals("VBZ") && !pattern[i].equals("VBP")
 				&& !pattern[i].equals("VBG") && !pattern[i].equals("VB")
 				&& !pattern[i].equals("MD") && !pattern[i].equals("VBN")
-				&& !pattern[i].equals("VBD")) {
+				&& !pattern[i].equals("VBD") && !pattern[i].equals("VBZpos")
+				&& !pattern[i].equals("VBPpos")) {
 
 			subAsArrayList.add(words[i]);
 			log.info("pattern: " + pattern[i]);
@@ -41,8 +42,16 @@ public class Process {
 		String[] words = ProcessLogic.splitSentence(sentence);
 
 		ArrayList<String> verbsAsArrayList = new ArrayList<String>();
+
+		int m = 0;
+		while (m < pattern.length) {
+			System.out.println(words[m] + " " + pattern[m] + " " + m);
+			m++;
+		}
+
 		int i = 0;
 		while (i < words.length && !(isVerb(pattern[i]))) {
+			log.info("Parsing " + pattern[i] + " " + i);
 			i++;
 		}
 
@@ -62,7 +71,10 @@ public class Process {
 		if (patternWord.equals("VBZ") || patternWord.equals("VBP")
 				|| patternWord.equals("VBG") || patternWord.equals("VB")
 				|| patternWord.equals("MD") || patternWord.equals("VBN")
-				|| patternWord.equals("VBD")) {
+				|| patternWord.equals("VBD") || patternWord.equals("VBZbe")
+				|| patternWord.equals("VBDbe") || patternWord.equals("VBbe")
+				|| patternWord.equals("VBZpos") || patternWord.equals("VBPpos")
+				|| patternWord.equals("VBPbe")) {
 
 			return true;
 

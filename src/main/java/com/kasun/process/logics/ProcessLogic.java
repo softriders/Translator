@@ -106,9 +106,10 @@ public class ProcessLogic {
 
     public static String normalVerbMean(String verb) {
         int i = 0;
-        log.info("checking this    " + verb);
+        log.info("checking this: " + verb);
         while (i < verbsPrasentSingl.length) {
             if (verb.equals(verbsPrasentSingl[i])) {
+            	log.info("checking database...");
                 return verbsPrasentSingulerMeaning[i];
             } else if (verb.equals(verbsPrasent[i])) {
                 return verbsPrasentPlurelMeaning[i];
