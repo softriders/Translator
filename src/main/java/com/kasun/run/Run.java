@@ -19,7 +19,7 @@ public class Run {
             sentence = scan.nextLine();
 
             String meaning;
-            meaning = translate.getMeaning(sentence);
+            meaning = getTranslation(sentence);
             System.out.print("Meaning is : ");
             System.out.println(meaning);
         }
@@ -28,7 +28,9 @@ public class Run {
     public static String getTranslation(String sentence) {
         String meaning = "";
         try {
-            meaning = translate.getMeaning(sentence);
+        	String sentenceLoweCase = sentence.toLowerCase();
+        	System.out.println("Input Sentence : "+sentenceLoweCase);
+            meaning = translate.getMeaning(sentenceLoweCase);
             return meaning;
         } catch (Exception e) {
             return "පරිවර්තනය කල නොහැක";

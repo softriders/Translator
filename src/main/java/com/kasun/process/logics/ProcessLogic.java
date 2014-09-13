@@ -18,7 +18,7 @@ public class ProcessLogic {
     private static String[] preposisions = { "to", "for", "from", "on", "in", "with", "about", "" };
     private static String[] proposisionsMeaning = { "ට", " වෙනුවෙන්", " සිට", " මත", " තුල", " සමග", " පිලිබදව", "" };
 
-    private static String[] englishSubject = { "I", "He", "She", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
+    private static String[] englishSubject = { "i", "he", "she", "teacher", "student", "you", "mother", "father", "farmer" };
     private static String[] sinhalaSubject = { "මම", "ඔහු", "ඇය", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
 
     private static String[] englishObject = { "home", "school", "rice", "bicycle", "book", "books", "him", "her", "me", "apple",

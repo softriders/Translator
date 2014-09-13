@@ -25,7 +25,7 @@ public class Process {
 				&& !pattern[i].equals("VBG") && !pattern[i].equals("VB")
 				&& !pattern[i].equals("MD") && !pattern[i].equals("VBN")
 				&& !pattern[i].equals("VBD") && !pattern[i].equals("VBZpos")
-				&& !pattern[i].equals("VBPpos")) {
+				&& !pattern[i].equals("VBPpos") && !pattern[i].equals("MDbe")) {
 
 			subAsArrayList.add(words[i]);
 			log.info("pattern: " + pattern[i]);
