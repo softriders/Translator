@@ -101,6 +101,12 @@ public class ProcesObject {
         }
         return obj;
     }
+    
+    public static ArrayList<String> makeObjectsAsListTest(String sentence) {
+    	
+    	
+    	return null;
+    }
 
     public static String getObjectMeaning(String word) {
         int i = 0;
@@ -267,11 +273,20 @@ public class ProcesObject {
                 log.info("objects[end]) " + objects[end]);
                 end++;
             }
+            
+            
 
         } else {
             modifiedObj = obj;
         }
         return modifiedObj;
+    }
+    
+    public String objMeanTest(String sentence, String [] pattern) {
+    	
+    	
+    	
+    	return null;
     }
 
     public String objMean(String sentence, String [] pattern) {

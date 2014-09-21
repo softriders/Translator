@@ -10,7 +10,7 @@ public class ProcesVerbUnitTest {
         String sentence = "They are eating for eating rice";
         ProsesVerb prosesVerb = new ProsesVerb();
         String verbs;
-        verbs = prosesVerb.verbMeanOfSentence(sentence,pattern);
-        System.out.println(verbs);
+     //   verbs = prosesVerb.verbMeanOfSentence(sentence,pattern);
+      //  System.out.println(verbs);
     }
 }

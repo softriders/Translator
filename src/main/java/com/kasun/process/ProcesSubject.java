@@ -32,10 +32,10 @@ public class ProcesSubject {
       
     public String getSubjectMean(String sentence, String [] pattern) {
 
-        ArrayList<String> subAsArrayList = new ArrayList<String>();
-        subAsArrayList = Process.subToArrayList(sentence,pattern);
-        String[] arr = new String[subAsArrayList.size()];
-        subAsArrayList.toArray(arr);
+//        ArrayList<String> subAsArrayList = new ArrayList<String>();
+//        subAsArrayList = Process.subToArrayList(sentence,pattern);
+        String[] arr = Process.subToArray(sentence,pattern);
+//        subAsArrayList.toArray(arr);
 
         String mean = "";
 

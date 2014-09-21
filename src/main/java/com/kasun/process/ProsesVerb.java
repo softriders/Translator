@@ -94,9 +94,9 @@ public class ProsesVerb {
 	public String verbMeanOfSentence(String sentence, String[] pattern,String[][] split_sentence)
 			throws SQLException {
 
-		ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
-		String[] verb = new String[verbs.size()];
-		verbs.toArray(verb);
+		//ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
+		String[] verb = Process.verbsToArray(sentence, pattern);
+		//verbs.toArray(verb);
 		//String[] verb =split_sentence[2];
 		
 		int k = 0;
