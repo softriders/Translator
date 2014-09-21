@@ -13,7 +13,11 @@ project.ext {
 }
 
 repositories {
-		mavenCentral()
+		mavenCentral()		
+		ivy {
+			// URL can refer to a local directory
+			url "~/LocalRepo/local-repo"
+		}
 }
         
 dependencies {
@@ -25,6 +29,8 @@ dependencies {
 				'org.springframework:spring-core:' + springVersion, 
 				'org.springframework:spring-web:' + springVersion,
 				'org.springframework:spring-webmvc:'  + springVersion,
+				'org.stanford-parser:stanford-parser:1.0',
+				'org.stanford-parser:stanford-parser-3.4-models:1.0',
 				'org.springframework:spring-context:'  + springVersion,
 				'org.codehaus.jackson:jackson-mapper-asl:' + jacksonVersion,
 				'taglibs:standard:' + tagLib
