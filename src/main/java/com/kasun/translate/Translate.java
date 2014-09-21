@@ -24,6 +24,7 @@ public class Translate {
     	
 
     	String [] pattern = Parser.getPattern(sentence);
+    	String[][] split_sentence=Parser.splitSentence(sentence,Parser.predictTense(pattern));
         
         ProcesObject procesObject = new ProcesObject();
         ProsesVerb prosesVerb = new ProsesVerb();
@@ -32,7 +33,7 @@ public class Translate {
         String sinhalaMeaning;
 
         sinhalaMeaning = procesSubject.getSubjectMean(sentence,pattern) + procesObject.objMean(sentence,pattern)
-                + prosesVerb.verbMeanOfSentence(sentence,pattern);
+                + prosesVerb.verbMeanOfSentence(sentence,pattern,split_sentence);
 
         return sinhalaMeaning;
     }

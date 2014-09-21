@@ -91,13 +91,14 @@ public class ProsesVerb {
 		return verbsAsArrayList;
 	}
 
-	public String verbMeanOfSentence(String sentence, String[] pattern)
+	public String verbMeanOfSentence(String sentence, String[] pattern,String[][] split_sentence)
 			throws SQLException {
 
 		ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
 		String[] verb = new String[verbs.size()];
 		verbs.toArray(verb);
-
+		//String[] verb =split_sentence[2];
+		
 		int k = 0;
 		while (k < verb.length) {
 			log.info("Verbs are ::: " + verb[k]);
@@ -105,6 +106,14 @@ public class ProsesVerb {
 		}
 
 		String mean = "";
+		/*System.out.println(split_sentence[0][0]+"ooooooooooooo");
+		simple present tense-ASMPRT
+		if(split_sentence[0][0].equals("ASMPRT")){
+			System.out.println("ok");
+			if(split_sentence[1][0].equals("I")){
+				mean=DBConnection.getSinhaleMean(verb[0], "vbp","I_mean");
+			}
+		}*/
 		if (1 < verb.length) {
 			int j = verb.length - 1;
 			int i = 0;

@@ -11,7 +11,6 @@ public class Run {
 
     public static void main(String[] args) throws SQLException {
         String sentence = "hi";
-        //System.out.println("I added this for test");
         while (!(sentence.equals(" "))) {
 
             System.out.print("Enter English sentence here : ");
