@@ -15,20 +15,11 @@ public class DBConnection {
 
     public static Connection con = null;
     
-   public static void main(String[] args){
-    	try {
-			System.out.println(DBConnection.getSinhaleMean("go","vbp","I_mean"));
-			//System.out.println(DBConnection.getVerbIngMean("going"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
 
     public static void createConnecction() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/translate", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/Translate", "root", "root");
             log.info("Connection created");
             // Class.forName("org.sqlite.JDBC");
             // con = DriverManager.getConnection("jdbc:sqlite:vilage.db");
