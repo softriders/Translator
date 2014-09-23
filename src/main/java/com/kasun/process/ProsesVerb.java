@@ -95,9 +95,9 @@ public class ProsesVerb {
 			throws SQLException {
 
 		//ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
-		String[] verb = Process.verbsToArray(sentence, pattern);
+		//String[] verb = Process.verbsToArray(sentence, pattern);
 		//verbs.toArray(verb);
-		//String[] verb =split_sentence[2];
+		String[] verb =split_sentence[2];
 		
 		int k = 0;
 		while (k < verb.length) {
@@ -106,12 +106,23 @@ public class ProsesVerb {
 		}
 
 		String mean = "";
-		/*System.out.println(split_sentence[0][0]+"ooooooooooooo");
-		simple present tense-ASMPRT
+	/*	//simple present tense-ASMPRT
 		if(split_sentence[0][0].equals("ASMPRT")){
-			System.out.println("ok");
-			if(split_sentence[1][0].equals("I")){
-				mean=DBConnection.getSinhaleMean(verb[0], "vbp","I_mean");
+			//System.out.println("sub is"+split_sentence[1][0]);
+			if(split_sentence[1][0].equals("i")){
+				//System.out.println("verb is "+verb[0]);
+				mean=DBConnection.getSinhaleMean(verb[0], "vbp","root");
+				mean=mean+"මි";
+				System.out.println("verb is "+mean);
+			}
+			else if(split_sentence[1][0].equals("we")){
+				mean=DBConnection.getSinhaleMean(verb[0], "vbp","root");
+				mean=mean+"මු";
+				System.out.println("verb is "+mean);
+			}
+			else{
+				mean=DBConnection.getSinhaleMean(verb[0], "vbp","mean");
+				System.out.println("verb is "+mean);
 			}
 		}*/
 		if (1 < verb.length) {

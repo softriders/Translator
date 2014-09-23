@@ -299,6 +299,10 @@ public class Parser {
 	public static String[][] splitSentence(String sentence,String[] prediction){
 		String[] words = ProcessLogic.splitSentence(sentence);
 		String[][] sentenceDecrpt=new String[4][];
+		//0-tense
+		//1-subject
+		//2-verb
+		//3-object
 		String[] tense=new String[1];
 		tense[0]=prediction[0];
 		sentenceDecrpt[0]=tense;
