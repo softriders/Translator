@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 14, 2014 at 07:06 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.16
+-- Generation Time: Sep 23, 2014 at 06:15 PM
+-- Server version: 5.5.31
+-- PHP Version: 5.3.10-1ubuntu3.14
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `translate`
 --
-CREATE DATABASE IF NOT EXISTS `translate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `translate`;
 
 -- --------------------------------------------------------
 
@@ -104,7 +102,9 @@ INSERT INTO `nn` (`vb`, `mean`) VALUES
 ('number', 'අංකය'),
 ('group', 'කණ්ඩායම'),
 ('problem', 'ගැටළුව'),
-('fact', 'කාරණාව');
+('fact', 'කාරණාව'),
+('home', 'ගෙදර'),
+('rice', 'බත්');
 
 -- --------------------------------------------------------
 
@@ -269,39 +269,41 @@ INSERT INTO `vbn` (`vb`, `mean`) VALUES
 
 CREATE TABLE IF NOT EXISTS `vbp` (
   `vb` varchar(50) COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) COLLATE utf8_bin NOT NULL
+  `mean` varchar(60) COLLATE utf8_bin NOT NULL,
+  `I_mean` varchar(60) COLLATE utf8_bin NOT NULL,
+  `we_mean` varchar(60) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `vbp`
 --
 
-INSERT INTO `vbp` (`vb`, `mean`) VALUES
-('go', 'යති'),
-('come', 'එති'),
-('eat', 'කති'),
-('drink', 'බොති'),
-('ride', 'පදිති'),
-('run', 'දුවති'),
-('read', 'කියවති'),
-('do', 'කරති'),
-('say', 'කියති'),
-('get', 'ලබති'),
-('make', 'සාදති'),
-('know', 'දනිති'),
-('take', 'ගනිති'),
-('see', 'දකිති'),
-('think', 'සිතති'),
-('look', 'බලති'),
-('give', 'දෙති'),
-('use', 'පාවිච්චි කරති'),
-('find', 'සොයති'),
-('tell', 'කියති'),
-('ask', 'ඉල්ලා සිටිති'),
-('work', 'වැඩ කරති'),
-('try', 'උත්සහ දරති'),
-('leave', 'පිටත් වෙති'),
-('call', 'කතා කරති');
+INSERT INTO `vbp` (`vb`, `mean`, `I_mean`, `we_mean`) VALUES
+('go', 'යති', 'යමි', 'යමු'),
+('come', 'එති', '', ''),
+('eat', 'කති', '', ''),
+('drink', 'බොති', '', ''),
+('ride', 'පදිති', '', ''),
+('run', 'දුවති', '', ''),
+('read', 'කියවති', '', ''),
+('do', 'කරති', '', ''),
+('say', 'කියති', '', ''),
+('get', 'ලබති', '', ''),
+('make', 'සාදති', '', ''),
+('know', 'දනිති', '', ''),
+('take', 'ගනිති', '', ''),
+('see', 'දකිති', '', ''),
+('think', 'සිතති', '', ''),
+('look', 'බලති', '', ''),
+('give', 'දෙති', '', ''),
+('use', 'පාවිච්චි කරති', '', ''),
+('find', 'සොයති', '', ''),
+('tell', 'කියති', '', ''),
+('ask', 'ඉල්ලා සිටිති', '', ''),
+('work', 'වැඩ කරති', '', ''),
+('try', 'උත්සහ දරති', '', ''),
+('leave', 'පිටත් වෙති', '', ''),
+('call', 'කතා කරති', '', '');
 
 -- --------------------------------------------------------
 
@@ -311,34 +313,36 @@ INSERT INTO `vbp` (`vb`, `mean`) VALUES
 
 CREATE TABLE IF NOT EXISTS `vbz` (
   `vb` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `male_mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `female_mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vbz`
 --
 
-INSERT INTO `vbz` (`vb`, `mean`) VALUES
-('does', 'කරයි'),
-('says', 'කියයි'),
-('gets', 'ලැබෙයි'),
-('makes', 'සකස් කරයි'),
-('goes', 'යයි'),
-('knows', 'දැන සිටියි'),
-('takes', 'ගනියි'),
-('sees', 'දකියි'),
-('comes', 'පැමිණෙයි'),
-('thinks', 'සිතයි'),
-('looks', 'බලයි'),
-('wants', 'අවශ්‍යයි'),
-('gives', 'දෙයි'),
-('uses', 'පාවිච්චි කරයි'),
-('finds', 'සොයා ගනියි'),
-('tells', 'කියයි'),
-('asks', 'ඉල්ලා සිටියි'),
-('works', 'වැඩ කරයි'),
-('feels', 'දැනෙයි'),
-('tries', 'උතසහ දරයි');
+INSERT INTO `vbz` (`vb`, `mean`, `male_mean`, `female_mean`) VALUES
+('does', 'කරයි', 'කරන්නේය', 'කරන්නීය'),
+('says', 'කියයි', '', ''),
+('gets', 'ලැබෙයි', '', ''),
+('makes', 'සකස් කරයි', '', ''),
+('goes', 'යයි', '', ''),
+('knows', 'දැන සිටියි', '', ''),
+('takes', 'ගනියි', '', ''),
+('sees', 'දකියි', '', ''),
+('comes', 'පැමිණෙයි', '', ''),
+('thinks', 'සිතයි', '', ''),
+('looks', 'බලයි', '', ''),
+('wants', 'අවශ්‍යයි', '', ''),
+('gives', 'දෙයි', '', ''),
+('uses', 'පාවිච්චි කරයි', '', ''),
+('finds', 'සොයා ගනියි', '', ''),
+('tells', 'කියයි', '', ''),
+('asks', 'ඉල්ලා සිටියි', '', ''),
+('works', 'වැඩ කරයි', '', ''),
+('feels', 'දැනෙයි', '', ''),
+('tries', 'උතසහ දරයි', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

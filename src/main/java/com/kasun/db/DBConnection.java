@@ -18,6 +18,7 @@ public class DBConnection {
    public static void main(String[] args){
     	try {
 			System.out.println(DBConnection.getSinhaleMean("go","vbp","I_mean"));
+			//System.out.println(DBConnection.getVerbIngMean("going"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
