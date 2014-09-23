@@ -1,6 +1,5 @@
 package com.kasun.web;
 
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import org.springframework.stereotype.Controller;
@@ -23,10 +22,8 @@ public class MainController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
-
 		model.addAttribute("message", "සිංහල පරිවර්තකය");
 		return "hello";
-
 	}
 
 	@RequestMapping(value = "/conv", method = RequestMethod.POST, produces = "text/plain; charset=utf-8")
@@ -34,11 +31,6 @@ public class MainController {
 	String add(@RequestParam(value = "input", required = true) String input) throws UnsupportedEncodingException {
 		String result = Run.getTranslation(input);
 		log.info(result);
-		
-//		byte[] bytesInUTF8 = result.getBytes("UTF-8"); // Correct.
-//		String stringUsingUTF8 = new String(bytesInUTF8, "UTF-8"); // Correct.
-			
 		return result;
 	}
-
 }
