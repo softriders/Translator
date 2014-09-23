@@ -15,13 +15,13 @@ public class DBConnection {
 
     public static Connection con = null;
     
-//   public static void main(String[] args){
-//    	try {
-//			System.out.println(DBConnection.getSinhaleMean("go","vbp","I_mean"));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//    }
+   public static void main(String[] args){
+    	try {
+			System.out.println(DBConnection.getSinhaleMean("go","vbp","I_mean"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 
     public static void createConnecction() {
         try {
@@ -69,7 +69,7 @@ public class DBConnection {
     //get any meaning from database
     public static String getSinhaleMean(String verb,String table,String col) throws SQLException {
         String verbMean = "";
-        String QUARY = "SELECT"+col+"FROM " +table+ "WHERE vb ='" + verb + "';";
+        String QUARY = "SELECT "+col+" FROM " +table+ " WHERE vb ='" + verb + "';";
         log.info("Quary: " + QUARY);
 
         try {
