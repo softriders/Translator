@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2014 at 12:41 AM
+-- Generation Time: Sep 24, 2014 at 10:34 AM
 -- Server version: 5.5.31
 -- PHP Version: 5.3.10-1ubuntu3.14
 
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `translate`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `female_nn`
+--
+
+CREATE TABLE IF NOT EXISTS `female_nn` (
+  `vb` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `female_nn`
+--
+
+INSERT INTO `female_nn` (`vb`, `mean`) VALUES
+('woman', 'කාන්තාව'),
+('mother', 'අම්මා'),
+('sister', 'සහෝදරිය');
 
 -- --------------------------------------------------------
 
@@ -65,6 +85,29 @@ INSERT INTO `in` (`vb`, `mean`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `male_nn`
+--
+
+CREATE TABLE IF NOT EXISTS `male_nn` (
+  `vb` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `male_nn`
+--
+
+INSERT INTO `male_nn` (`vb`, `mean`) VALUES
+('man', 'මිනිසා'),
+('saman', 'සමන්'),
+('kamal', 'කමල්'),
+('nimal', 'නිමල්'),
+('father', 'තාත්තා'),
+('brother', 'සහෝදරයා');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `nn`
 --
 
@@ -84,14 +127,12 @@ INSERT INTO `nn` (`vb`, `mean`) VALUES
 ('way', 'මග'),
 ('day', 'දවස'),
 ('thing', 'දෙය'),
-('man', 'මිනිසා'),
 ('world', 'ලෝකය'),
 ('life', 'ජීවිතය'),
 ('hand', 'අත'),
 ('part', 'කොටස'),
 ('child', 'ළමයා'),
 ('eye', 'ඇස'),
-('woman', 'කාන්තාව'),
 ('place', 'ස්ථානය'),
 ('work', 'කාර්යය'),
 ('week', 'සතිය'),
@@ -105,13 +146,6 @@ INSERT INTO `nn` (`vb`, `mean`) VALUES
 ('fact', 'කාරණාව'),
 ('home', 'ගෙදර'),
 ('rice', 'බත්'),
-('mother', 'අම්මා'),
-('Saman', 'සමන්'),
-('father', 'තාත්තා'),
-('brother', 'සහෝදරයා'),
-('sister', 'සහෝදරිය'),
-('Kamal', 'කමල්'),
-('Nimal', 'නිමල්'),
 ('cat', 'පූසා');
 
 -- --------------------------------------------------------
@@ -145,6 +179,18 @@ INSERT INTO `rb` (`vb`, `mean`) VALUES
 ('again', 'නැවත'),
 ('already', 'මේ වන විටත්'),
 ('quickly', 'ඉක්මනට');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `smpr_vb`
+--
+
+CREATE TABLE IF NOT EXISTS `smpr_vb` (
+  `vbp` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `vbz` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -295,7 +341,7 @@ INSERT INTO `vbp` (`vb`, `mean`, `I_mean`, `we_mean`, `root`) VALUES
 ('ride', 'පදිති', '', '', 'පදි'),
 ('run', 'දුවති', '', '', 'දුව'),
 ('read', 'කියවති', '', '', 'කියව'),
-('do', 'කරති', '', '', ''),
+('do', 'කරති', '', '', 'කර'),
 ('say', 'කියති', '', '', ''),
 ('get', 'ලබති', '', '', ''),
 ('make', 'සාදති', '', '', ''),
