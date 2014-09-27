@@ -23,6 +23,8 @@ SET UP MACHINE
 
 Set Up : Java, Gradle, Tomcat, Git, MySql
 
+Project Remote Repo : https://github.com/softriders/Translator.git
+
 Link to set up Machine and Project : https://docs.google.com/document/d/1mlimGnpp3haZRgzrCCgC4WLaIPR53Xpwt79gea-YNtA/
 All the details about the project are in that google doc.
 
