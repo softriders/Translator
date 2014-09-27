@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2014 at 10:34 AM
--- Server version: 5.5.31
--- PHP Version: 5.3.10-1ubuntu3.14
+-- Generation Time: Sep 14, 2014 at 07:06 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,26 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `translate`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `female_nn`
---
-
-CREATE TABLE IF NOT EXISTS `female_nn` (
-  `vb` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `female_nn`
---
-
-INSERT INTO `female_nn` (`vb`, `mean`) VALUES
-('woman', 'කාන්තාව'),
-('mother', 'අම්මා'),
-('sister', 'සහෝදරිය');
+CREATE DATABASE IF NOT EXISTS `TestTranslate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `TestTranslate`;
 
 -- --------------------------------------------------------
 
@@ -85,29 +67,6 @@ INSERT INTO `in` (`vb`, `mean`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `male_nn`
---
-
-CREATE TABLE IF NOT EXISTS `male_nn` (
-  `vb` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `male_nn`
---
-
-INSERT INTO `male_nn` (`vb`, `mean`) VALUES
-('man', 'මිනිසා'),
-('saman', 'සමන්'),
-('kamal', 'කමල්'),
-('nimal', 'නිමල්'),
-('father', 'තාත්තා'),
-('brother', 'සහෝදරයා');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `nn`
 --
 
@@ -127,12 +86,14 @@ INSERT INTO `nn` (`vb`, `mean`) VALUES
 ('way', 'මග'),
 ('day', 'දවස'),
 ('thing', 'දෙය'),
+('man', 'මිනිසා'),
 ('world', 'ලෝකය'),
 ('life', 'ජීවිතය'),
 ('hand', 'අත'),
 ('part', 'කොටස'),
 ('child', 'ළමයා'),
 ('eye', 'ඇස'),
+('woman', 'කාන්තාව'),
 ('place', 'ස්ථානය'),
 ('work', 'කාර්යය'),
 ('week', 'සතිය'),
@@ -143,10 +104,7 @@ INSERT INTO `nn` (`vb`, `mean`) VALUES
 ('number', 'අංකය'),
 ('group', 'කණ්ඩායම'),
 ('problem', 'ගැටළුව'),
-('fact', 'කාරණාව'),
-('home', 'ගෙදර'),
-('rice', 'බත්'),
-('cat', 'පූසා');
+('fact', 'කාරණාව');
 
 -- --------------------------------------------------------
 
@@ -179,18 +137,6 @@ INSERT INTO `rb` (`vb`, `mean`) VALUES
 ('again', 'නැවත'),
 ('already', 'මේ වන විටත්'),
 ('quickly', 'ඉක්මනට');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `smpr_vb`
---
-
-CREATE TABLE IF NOT EXISTS `smpr_vb` (
-  `vbp` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `vbz` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -323,42 +269,39 @@ INSERT INTO `vbn` (`vb`, `mean`) VALUES
 
 CREATE TABLE IF NOT EXISTS `vbp` (
   `vb` varchar(50) COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) COLLATE utf8_bin NOT NULL,
-  `I_mean` varchar(60) COLLATE utf8_bin NOT NULL,
-  `we_mean` varchar(60) COLLATE utf8_bin NOT NULL,
-  `root` varchar(60) COLLATE utf8_bin NOT NULL
+  `mean` varchar(60) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `vbp`
 --
 
-INSERT INTO `vbp` (`vb`, `mean`, `I_mean`, `we_mean`, `root`) VALUES
-('go', 'යති', 'යමි', 'යමු', 'ය'),
-('come', 'එති', '', '', 'එ'),
-('eat', 'කති', '', '', 'ක'),
-('drink', 'බොති', '', '', 'බො'),
-('ride', 'පදිති', '', '', 'පදි'),
-('run', 'දුවති', '', '', 'දුව'),
-('read', 'කියවති', '', '', 'කියව'),
-('do', 'කරති', '', '', 'කර'),
-('say', 'කියති', '', '', ''),
-('get', 'ලබති', '', '', ''),
-('make', 'සාදති', '', '', ''),
-('know', 'දනිති', '', '', ''),
-('take', 'ගනිති', '', '', ''),
-('see', 'දකිති', '', '', ''),
-('think', 'සිතති', '', '', ''),
-('look', 'බලති', '', '', ''),
-('give', 'දෙති', '', '', ''),
-('use', 'පාවිච්චි කරති', '', '', ''),
-('find', 'සොයති', '', '', ''),
-('tell', 'කියති', '', '', ''),
-('ask', 'ඉල්ලා සිටිති', '', '', ''),
-('work', 'වැඩ කරති', '', '', ''),
-('try', 'උත්සහ දරති', '', '', ''),
-('leave', 'පිටත් වෙති', '', '', ''),
-('call', 'කතා කරති', '', '', '');
+INSERT INTO `vbp` (`vb`, `mean`) VALUES
+('go', 'යති'),
+('come', 'එති'),
+('eat', 'කති'),
+('drink', 'බොති'),
+('ride', 'පදිති'),
+('run', 'දුවති'),
+('read', 'කියවති'),
+('do', 'කරති'),
+('say', 'කියති'),
+('get', 'ලබති'),
+('make', 'සාදති'),
+('know', 'දනිති'),
+('take', 'ගනිති'),
+('see', 'දකිති'),
+('think', 'සිතති'),
+('look', 'බලති'),
+('give', 'දෙති'),
+('use', 'පාවිච්චි කරති'),
+('find', 'සොයති'),
+('tell', 'කියති'),
+('ask', 'ඉල්ලා සිටිති'),
+('work', 'වැඩ කරති'),
+('try', 'උත්සහ දරති'),
+('leave', 'පිටත් වෙති'),
+('call', 'කතා කරති');
 
 -- --------------------------------------------------------
 
@@ -368,37 +311,34 @@ INSERT INTO `vbp` (`vb`, `mean`, `I_mean`, `we_mean`, `root`) VALUES
 
 CREATE TABLE IF NOT EXISTS `vbz` (
   `vb` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `male_mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `female_mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `meann` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+  `mean` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vbz`
 --
 
-INSERT INTO `vbz` (`vb`, `mean`, `male_mean`, `female_mean`, `meann`) VALUES
-('does', 'කරයි', 'කරන්නේය', 'කරන්නීය', 'කර'),
-('says', 'කියයි', 'කියන්නේය', 'කියන්නීය', 'කිය'),
-('gets', 'ලැබෙයි', '0', 'ලැබෙන්නීය', 'ලැබෙ'),
-('makes', 'සකස් කරයි', '0', 'සකස් කර', 'සකස් කර'),
-('goes', 'යයි', '0', 'ය', 'ය'),
-('knows', 'දැන සිටියි', '0', 'දැන සිටි', 'දැන සිටි'),
-('takes', 'ගනියි', '0', 'ගන්', 'ගන්'),
-('sees', 'දකියි', '0', 'දකි', 'දකි'),
-('comes', 'පැමිණෙයි', '0', 'පැමිණෙ', 'පැමිණෙ'),
-('thinks', 'සිතයි', '0', 'සිත', 'සිත'),
-('looks', 'බලයි', '0', 'බල', 'බල'),
-('wants', 'අවශ්‍යයි', '0', '', ''),
-('gives', 'දෙයි', '0', 'දෙ', 'දෙ'),
-('uses', 'පාවිච්චි කරයි', '0', 'පාවිච්චි කර', 'පාවිච්චි කර'),
-('finds', 'සොයා ගනියි', '0', 'සොයා ගන්', 'සොයා ගන්'),
-('tells', 'කියයි', '0', 'කිය', 'කිය'),
-('asks', 'ඉල්ලා සිටියි', '0', 'ඉල්ලා සිටි', 'ඉල්ලා සිටි'),
-('works', 'වැඩ කරයි', '0', 'වැඩ කර', 'වැඩ කර'),
-('feels', 'දැනෙයි', '0', 'දැනෙ', 'දැනෙ'),
-('tries', 'උත්සහ දරයි', '0', 'උත්සහ දර', 'උත්සහ දර');
+INSERT INTO `vbz` (`vb`, `mean`) VALUES
+('does', 'කරයි'),
+('says', 'කියයි'),
+('gets', 'ලැබෙයි'),
+('makes', 'සකස් කරයි'),
+('goes', 'යයි'),
+('knows', 'දැන සිටියි'),
+('takes', 'ගනියි'),
+('sees', 'දකියි'),
+('comes', 'පැමිණෙයි'),
+('thinks', 'සිතයි'),
+('looks', 'බලයි'),
+('wants', 'අවශ්‍යයි'),
+('gives', 'දෙයි'),
+('uses', 'පාවිච්චි කරයි'),
+('finds', 'සොයා ගනියි'),
+('tells', 'කියයි'),
+('asks', 'ඉල්ලා සිටියි'),
+('works', 'වැඩ කරයි'),
+('feels', 'දැනෙයි'),
+('tries', 'උතසහ දරයි');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -9,6 +9,7 @@ import com.kasun.parser.Parser;
 import com.kasun.process.ProcesObject;
 import com.kasun.process.ProcesSubject;
 import com.kasun.process.ProsesVerb;
+import com.kasun.process.logics.ProcessLogic;
 
 public class Translate {
 
@@ -48,4 +49,25 @@ public class Translate {
         }
         return false;
     }
+    
+    public static String convertToStanderdString(String meaning){
+    	
+    	String [] meaningInArray = ProcessLogic.splitSentence(meaning);
+    	String standerdMeaning = meaningInArray[0];
+    	log.info("meaningInArray "+meaningInArray[0]);
+    	int i = 1;
+    	while(i<meaningInArray.length){
+    		standerdMeaning = standerdMeaning + " ";
+    		log.info(standerdMeaning);
+    		i++;
+    	}
+    	return standerdMeaning;
+    }
+    
+//    public static void main(String [] args){
+//    	String example = "He Is going A book";
+//    	log.info("log "+example);
+//    	System.out.println(convertToStanderdString(example));
+//    }
+    
 }

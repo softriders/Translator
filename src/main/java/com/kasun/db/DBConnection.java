@@ -15,19 +15,18 @@ public class DBConnection {
 
     public static Connection con = null;
     
- /*   public static void main(String[] args){
-    	try {
-			System.out.println("this"+getSinhaleMean("goes","vbz","meann"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }*/
+//   public static void main(String[] args){
+//    	try {
+//			System.out.println(DBConnection.getSinhaleMean("go","vbp","I_mean"));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//    }
 
     public static void createConnecction() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/translate", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/TestTranslate", "root", "root");
             log.info("Connection created");
             // Class.forName("org.sqlite.JDBC");
             // con = DriverManager.getConnection("jdbc:sqlite:vilage.db");
@@ -70,7 +69,7 @@ public class DBConnection {
     //get any meaning from database
     public static String getSinhaleMean(String verb,String table,String col) throws SQLException {
         String verbMean = "";
-        String QUARY = "SELECT "+col+" FROM " +table+ " WHERE vb ='" + verb + "';";
+        String QUARY = "SELECT"+col+"FROM " +table+ "WHERE vb ='" + verb + "';";
         log.info("Quary: " + QUARY);
 
         try {
@@ -82,7 +81,7 @@ public class DBConnection {
             ResultSet res = stm.executeQuery(QUARY);
 
             if (res.next()) {
-                verbMean = res.getString(col);
+                verbMean = res.getString("mean");
             }
 
             closeConnection();

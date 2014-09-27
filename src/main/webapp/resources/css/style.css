@@ -1,5 +1,6 @@
 body{
     font-family:sans-serif;
+    background-image: url("image01.jpg");
 }
 
 #header,#footer{
@@ -50,4 +51,11 @@ label{
 #reset,#copy{
     position: relative;
     left: 385px;
+}
+#in,#out{
+	font-size:20px;
+}
+#trns_title{
+	font-size:40px;
+	font-weight:1px;
 }
