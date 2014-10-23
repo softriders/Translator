@@ -185,8 +185,12 @@ public class ProcessLogic {
     }
 
     public static String[] splitSentence(String sentence) {
+    	log.info("splitSentence");
+    	log.info("Input : "+sentence);
         String words[];
         words = sentence.split(" ");
+        log.info("Word : "+words[0]);
+        log.info("End splitSentence");
         return words;
     }
 

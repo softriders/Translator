@@ -16,15 +16,16 @@
         <div id="header_left">
             <input type="button" id="menu" value="Menu"/>
             <input type="button" id="help" value="Help" />
-        </div>
-        Translator
-        <div style="float: right;" id="header_right" >
             <input type="button" id="login" value="Login" />
             <input type="button" id="signup" value="Signup free" />
-        </div>		
+        </div>
+        <div id="trns_title">Translator</div>
+        
+            
+        		
 	</center>
 	<div id="content">
-		<h1>Translator</h1>
+		
 		
 		<h3>${message}</h3>
 		<div id="english">
