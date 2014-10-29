@@ -243,10 +243,10 @@ public class ProsesVerb {
 		}
 		return "";
 	}
-	public static void main(String[] args) throws SQLException{
+/*	public static void main(String[] args) throws SQLException{
 		String test=DBConnection.getSinhaleMean("does", "vbz","mean");
 		System.out.println("mean is "+test);
 		char[] testt=test.toCharArray();
 		System.out.println("mean is "+testt[0]);
-	}
+	}*/
 }
