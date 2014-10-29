@@ -46,6 +46,7 @@ public class Parser {
 		return tokenizer.tokenize();
 	}
 
+	//return string array with parser output for each word as an array element
 	public static String[] getPattern(String sentece) {
 		String in = "I went home";
 		String[] pattn = null;
@@ -94,7 +95,7 @@ public class Parser {
 //			System.out.println();
 //		}
 //	}
-	
+	//0-tense,1-index of RB in verb,2-vrb starting index,3-obj starting index
 	public static String[] predictTense(String[] pattern){
 		String[] prediction=new String[4];
 		//0-tense,1-index of RB in verb,2-vrb starting index,3-obj starting index
@@ -296,6 +297,8 @@ public class Parser {
                 
                 return wordDecript;
        }
+
+	//(0,0)=tense,1-subject as an array,2-verb as an array,3-obj as an array
 	public static String[][] splitSentence(String sentence,String[] prediction){
 		String[] words = ProcessLogic.splitSentence(sentence);
 		String[][] sentenceDecrpt=new String[4][];

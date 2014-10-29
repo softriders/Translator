@@ -95,9 +95,9 @@ public class ProsesVerb {
 			throws SQLException {
 
 		//ArrayList<String> verbs = Process.verbsToArrayList(sentence, pattern);
-		String[] verb = Process.verbsToArray(sentence, pattern);
+		//String[] verb = Process.verbsToArray(sentence, pattern);
 		//verbs.toArray(verb);
-		//String[] verb =split_sentence[2];
+		String[] verb =split_sentence[2];
 		
 		int k = 0;
 		while (k < verb.length) {
@@ -106,6 +106,10 @@ public class ProsesVerb {
 		}
 
 		String mean = "";
+		//simple present tense-ASMPRT
+		if(split_sentence[0][0].equals("ASMPRT")){
+			
+		}
 		/*System.out.println(split_sentence[0][0]+"ooooooooooooo");
 		simple present tense-ASMPRT
 		if(split_sentence[0][0].equals("ASMPRT")){
@@ -114,7 +118,7 @@ public class ProsesVerb {
 				mean=DBConnection.getSinhaleMean(verb[0], "vbp","I_mean");
 			}
 		}*/
-		if (1 < verb.length) {
+		/*if (1 < verb.length) {
 			int j = verb.length - 1;
 			int i = 0;
 			if (!ProcessLogic.isDoDoes(verb[0])) {
@@ -164,7 +168,7 @@ public class ProsesVerb {
 			mean = ProcessLogic.normalVerbMean(verb[0]);
 			log.info("verb is :) " + verb[0]);
 			log.info("verb mean is : " + mean);
-		}
+		}*/
 		return mean;
 	}
 
@@ -238,5 +242,11 @@ public class ProsesVerb {
 			}
 		}
 		return "";
+	}
+	public static void main(String[] args) throws SQLException{
+		String test=DBConnection.getSinhaleMean("does", "vbz","mean");
+		System.out.println("mean is "+test);
+		char[] testt=test.toCharArray();
+		System.out.println("mean is "+testt[0]);
 	}
 }

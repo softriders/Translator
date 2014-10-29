@@ -26,7 +26,7 @@ public class DBConnection {
     public static void createConnecction() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/TestTranslate", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/translate", "root", "root");
             log.info("Connection created");
             // Class.forName("org.sqlite.JDBC");
             // con = DriverManager.getConnection("jdbc:sqlite:vilage.db");
